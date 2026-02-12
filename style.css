@@ -1,0 +1,124 @@
+/* style.css */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1a1b26; /* Dark background ala Rapspoint */
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Layout Grid Area */
+.grid-container {
+    display: grid;
+    grid-template-areas:
+        'header header'
+        'nav nav'
+        'sidebar main'
+        'footer footer';
+    grid-gap: 10px;
+    padding: 10px;
+}
+
+/* Header */
+header {
+    grid-area: header;
+    background-color: #242538;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 3px solid #7289da;
+}
+header h1 { margin: 0; color: #7289da; text-transform: uppercase; letter-spacing: 2px; }
+
+/* Marquee */
+.running-text {
+    background: #ffae00;
+    color: #000;
+    font-weight: bold;
+    padding: 5px;
+}
+
+/* Navigation */
+nav {
+    grid-area: nav;
+    background-color: #2e3046;
+    padding: 10px;
+    text-align: center;
+}
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    font-size: 18px;
+}
+nav a:hover { color: #ffae00; }
+
+/* Sidebar */
+aside {
+    grid-area: sidebar;
+    background-color: #242538;
+    padding: 20px;
+    width: 250px;
+    border-radius: 8px;
+}
+aside h3 { color: #ffae00; border-bottom: 1px solid #555; padding-bottom: 5px; }
+
+/* Main Content */
+main {
+    grid-area: main;
+    background-color: #1a1b26;
+    padding: 20px;
+    min-height: 500px;
+}
+
+/* Footer */
+footer {
+    grid-area: footer;
+    background-color: #161722;
+    padding: 20px;
+    text-align: center;
+    color: #888;
+    margin-top: 20px;
+}
+
+/* Komponen Katalog (Card) */
+.catalog {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+.card {
+    background: #2e3046;
+    border: 1px solid #3f4158;
+    border-radius: 10px;
+    width: 200px;
+    padding: 15px;
+    text-align: center;
+    transition: 0.3s;
+}
+.card:hover { transform: translateY(-5px); border-color: #7289da; }
+.card img { width: 100px; height: 100px; object-fit: contain; margin-bottom: 10px; }
+.btn-order {
+    display: block;
+    background: #7289da;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+.btn-order:hover { background: #5b6eae; }
+
+/* Form Styles */
+form label { display: block; margin-top: 15px; color: #aaa; }
+form input, form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    background: #161722;
+    border: 1px solid #3f4158;
+    color: white;
+    border-radius: 5px;
+}

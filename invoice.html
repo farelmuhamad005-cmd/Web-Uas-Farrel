@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice Pembayaran</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .invoice-box {
+            background: #fff;
+            color: #333; /* Struk biasanya terang */
+            max-width: 500px;
+            margin: auto;
+            padding: 30px;
+            font-family: 'Courier New', monospace;
+            border: 2px dashed #333;
+        }
+        .invoice-box h2 { text-align: center; margin-bottom: 5px; }
+        .invoice-details { width: 100%; margin-top: 20px; }
+        .invoice-details td { padding: 5px 0; }
+        .total-pay { font-size: 20px; font-weight: bold; text-align: right; margin-top: 20px; border-top: 2px solid #333; padding-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="grid-container">
+        <header><h1>🧾 INVOICE JOKI</h1></header>
+        <nav><a href="index.html">KEMBALI</a></nav>
+
+        <main style="grid-column: span 2;"> <div class="invoice-box">
+                <h2>BUKTI ORDER JOKI</h2>
+                <p style="text-align: center;">TANGGAL: <span id="tgl"></span></p>
+                <hr>
+                
+                <table class="invoice-details">
+                    <tr><td><strong>User ID</strong></td><td>: <span id="resID"></span> (<span id="resServer"></span>)</td></tr>
+                    <tr><td><strong>Login Via</strong></td><td>: <span id="resLogin"></span></td></tr>
+                    <tr><td><strong>Paket Rank</strong></td><td>: <span id="resPaket"></span></td></tr>
+                    <tr><td><strong>Jumlah Bintang</strong></td><td>: <span id="resQty"></span> Star</td></tr>
+                    <tr><td><strong>Harga Satuan</strong></td><td>: <span id="resHarga"></span></td></tr>
+                    <tr><td><strong>Pembayaran</strong></td><td>: <span id="resPay"></span></td></tr>
+                    <tr><td><strong>No. WA</strong></td><td>: <span id="resWA"></span></td></tr>
+                </table>
+
+                <div class="total-pay">
+                    TOTAL: <span id="resTotal">Rp 0</span>
+                </div>
+
+                <p style="font-size: 12px; margin-top: 20px; text-align: center;">*Silahkan transfer sesuai nominal total. Kirim bukti ke Admin.*</p>
+                
+                <center>
+                    <button onclick="window.print()" class="btn-order" style="background:#333; color:white; border:none; cursor:pointer;">CETAK STRUK</button>
+                </center>
+            </div>
+        </main>
+
+        <footer><p>&copy; 2026 Jasa Joki MLBB</p></footer>
+    </div>
+
+    <script>
+        // LOGIKA JAVASCRIPT UNTUK MENANGKAP DATA
+        const params = new URLSearchParams(window.location.search);
+        
+        // Ambil data paket (Nama|Harga)
+        const paketRaw = params.get('paket') || "Paket|0";
+        const [namaPaket, hargaSatuan] = paketRaw.split('|');
+        const qty = parseInt(params.get('qty'));
+        const total = parseInt(hargaSatuan) * qty;
+
+        // Tampilkan ke elemen HTML
+        document.getElementById('tgl').innerText = new Date().toLocaleDateString();
+        document.getElementById('resID').innerText = params.get('userid');
+        document.getElementById('resServer').innerText = params.get('serverid');
+        document.getElementById('resLogin').innerText = params.get('loginvia');
+        document.getElementById('resPaket').innerText = namaPaket;
+        document.getElementById('resQty').innerText = qty;
+        document.getElementById('resHarga').innerText = "Rp " + parseInt(hargaSatuan).toLocaleString('id-ID');
+        document.getElementById('resPay').innerText = params.get('pembayaran');
+        document.getElementById('resWA').innerText = params.get('wa');
+        document.getElementById('resTotal').innerText = "Rp " + total.toLocaleString('id-ID');
+    </script>
+</body>
+</html>

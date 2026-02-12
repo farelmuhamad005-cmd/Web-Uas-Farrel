@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Order Joki</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="grid-container">
+        <header><h1>📝 FORMULIR JOKI</h1></header>
+        <nav>
+            <a href="index.html">KEMBALI KE HOME</a>
+        </nav>
+
+        <aside>
+            <h3>⚠️ Peraturan Joki</h3>
+            <p>1. Dilarang login saat proses joki.</p>
+            <p>2. Matikan verifikasi sekunder.</p>
+            <p>3. Jika menabrak, joki hangus.</p>
+        </aside>
+
+        <main>
+            <div style="max-width: 600px; margin: auto; background: #242538; padding: 20px; border-radius: 10px;">
+                <form action="invoice.html" method="GET">
+                    <h3 style="border-bottom: 2px solid #7289da; padding-bottom:10px;">Data Akun (Wajib Diisi)</h3>
+                    
+                    <label>User ID (Server):</label>
+                    <div style="display:flex; gap:10px;">
+                        <input type="number" name="userid" placeholder="Contoh: 12345678" required style="flex:2;">
+                        <input type="number" name="serverid" placeholder="(1234)" required style="flex:1;">
+                    </div>
+
+                    <label>Login Via:</label>
+                    <select name="loginvia">
+                        <option value="Moonton">Moonton (Recommended)</option>
+                        <option value="VK">VK</option>
+                        <option value="TikTok">TikTok</option>
+                        <option value="Facebook">Facebook</option>
+                    </select>
+
+                    <label>Email / No. HP Akun:</label>
+                    <input type="text" name="email_akun" required>
+
+                    <h3 style="border-bottom: 2px solid #7289da; padding-bottom:10px; margin-top:20px;">Pilih Layanan</h3>
+                    
+                    <label>Pilih Paket Rank:</label>
+                    <select name="paket" id="paket" onchange="updateHarga()">
+                        <option value="Grandmaster|3000">Grandmaster (Rp 3.000/Bintang)</option>
+                        <option value="Epic|5000">Epic (Rp 5.000/Bintang)</option>
+                        <option value="Legend|7000">Legend (Rp 7.000/Bintang)</option>
+                        <option value="Mythic|15000">Mythic (Rp 15.000/Bintang)</option>
+                    </select>
+
+                    <label>Jumlah Bintang/Win:</label>
+                    <input type="number" name="qty" id="qty" value="1" min="1" oninput="updateHarga()">
+
+                    <label>Metode Pembayaran:</label>
+                    <select name="pembayaran">
+                        <option value="QRIS">QRIS (OVO/Gopay/Dana)</option>
+                        <option value="Transfer Bank">Transfer Bank BCA</option>
+                        <option value="Pulsa">Pulsa (Rate 0.8)</option>
+                    </select>
+
+                    <label>Nomor WhatsApp Pembeli:</label>
+                    <input type="number" name="wa" placeholder="08xx..." required>
+
+                    <h4 style="text-align: right; color: #ffae00;">Total: <span id="totalDisplay">Rp 3.000</span></h4>
+                    
+                    <button type="submit" class="btn-order" style="width:100%; border:none; cursor:pointer;">CHECKOUT / BUAT PESANAN</button>
+                </form>
+            </div>
+        </main>
+        
+        <footer><p>&copy; 2026 Jasa Joki MLBB</p></footer>
+    </div>
+
+    <script>
+        // Script sederhana untuk hitung estimasi harga realtime
+        function updateHarga() {
+            let paket = document.getElementById('paket').value.split('|');
+            let harga = parseInt(paket[1]);
+            let qty = document.getElementById('qty').value;
+            let total = harga * qty;
+            document.getElementById('totalDisplay').innerText = "Rp " + total.toLocaleString('id-ID');
+        }
+    </script>
+</body>
+</html>
